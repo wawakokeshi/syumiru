@@ -35,7 +35,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.string :first_name, null: false
       t.string :last_name_kana, null: false
       t.string :first_name_kana, null: false
-      t.integer :sex, null: false, default: 1
+      t.integer :gender, null: false, default: 0
       t.integer :age, null: false
       t.string :telephone_number, null: false
       t.string :nickname, null: false
