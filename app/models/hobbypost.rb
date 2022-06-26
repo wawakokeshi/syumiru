@@ -1,4 +1,4 @@
-class HobbyPost < ApplicationRecord
+class Hobbypost < ApplicationRecord
   belongs_to :genre
   belongs_to :member
   has_many :comments

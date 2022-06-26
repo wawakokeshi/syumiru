@@ -9,12 +9,12 @@
   </div>
  </div>
 
-<% @hobby_posts.each do |hobby_posts| %>
- <%= hobby_posts.genre.name %>
- <%= link_to hobby_posts.title, hobby_post_path(hobby_posts.id) %>
- <%= hobby_posts.introduction %>
- <% if hobby_posts.image.attached? %>
-    <%= image_tag hobby_posts.image, size: "200x200" %>
+<% @hobbyposts.each do |hobbyposts| %>
+ <%= hobbyposts.genre.name %>
+ <%= link_to hobbyposts.title, hobbypost_path(hobbyposts.id) %>
+ <%= hobbyposts.introduction %>
+ <% if hobbyposts.image.attached? %>
+    <%= image_tag hobbyposts.image, size: "200x200" %>
   <% else %>
     <%= image_tag 'no_image', size: "200x200" %>
   <% end %>

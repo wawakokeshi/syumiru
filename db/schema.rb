@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2022_06_26_110925) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.integer "hobbypost_id"
+    t.integer "member_id"
+    t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -68,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_06_26_110925) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "hobby_posts", force: :cascade do |t|
+  create_table "hobbyposts", force: :cascade do |t|
     t.integer "genre_id"
     t.integer "member_id"
     t.string "title", null: false

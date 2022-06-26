@@ -21,12 +21,12 @@ Rails.application.routes.draw do
  scope module: :public do
   root to: 'homes#top'
   get '/about' => 'homes#about', as: 'about'
-  resources :comments, only: [:index, :show, :new, :create]
+  resources :comments, only: [:show, :create]
   #resources :favorites, only: [:index, :create, :destroy, :update]
   resources :members, only: [:show, :edit, :update]
   get '/members/:id/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
   patch '/members/:id/withdrawal' => 'members#withdrawal', as: 'withdrawal'
-  resources :hobby_posts
+  resources :hobbyposts
  end
 
 end

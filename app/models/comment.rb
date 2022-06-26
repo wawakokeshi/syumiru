@@ -1,3 +1,4 @@
 class Comment < ApplicationRecord
-  belongs_to :member, :hobby_post
+  belongs_to :member
+  belongs_to :hobbypost
 end

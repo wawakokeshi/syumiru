@@ -5,7 +5,7 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :hobby_posts, dependent: :destroy
+  has_many :hobbyposts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one_attached :image
@@ -17,12 +17,14 @@ class Member < ApplicationRecord
   validates :telephone_number, format: { with: VALID_TELEPHONE_NUMBER_REGEX }, presence: true
 
   validates :age, :numericality => {:only_integer => true, greater_than_or_equal_to: 15}
+  
+  validates :comment_text, presence: true, length: { maximum: 1000 }
 
   enum gender: { male: 0, female: 1 }
   enum is_active: { stay: true,  withdrawal: false }
 
   def full_name
    self.last_name + self.first_name
- end
+  end
 
 end

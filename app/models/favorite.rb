@@ -1,3 +1,4 @@
 class Favorite < ApplicationRecord
- belongs_to :mebmer, :hobby_post
+ belongs_to :mebmer
+ belongs_to :hobbypost
 end

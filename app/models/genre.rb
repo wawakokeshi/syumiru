@@ -1,3 +1,3 @@
 class Genre < ApplicationRecord
-  has_many :hobby_posts
+  has_many :hobbyposts
 end
