@@ -15,12 +15,7 @@ class Admin::MembersController < ApplicationController
  def update
   @member = Member.find(params[:id])
   @member.update(member_params)
-  # if @customer.update(customer_params)
-  # flash[:success] = "更新しました"
   redirect_to admin_member_path(@member.id)
-  #else
-   #render :edit
-  #end
  end
 
 private

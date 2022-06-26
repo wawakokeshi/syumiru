@@ -1,0 +1,31 @@
+<div class="container">
+ <div class="row">
+  <div class="col-sm-3 mt-3">
+   <table class = "table-sm table-borderless">
+    <thead>
+     <th class="table-active h4">投稿フォーム</th>
+    </thead>
+   </table>
+  </div>
+ </div>
+
+<%= form_with model: @post, url: posts_path, local:true do |f| %>
+ <div class="row">
+  <div class="col-sm-3 mt-3">
+   <table class = "table-sm table-borderless">
+     <tr>
+     <%= f.label :title, "タイトル" %>
+     <%= f.text_field :title %>
+     </tr>
+     <tr>
+     <%= f.label :introduction, "本文" %>
+     <%= f.text_field :introduction %>
+     </tr>
+     <tr>
+     <%= f.submit "投稿する", class: "btn btn-success btn-sm mt-2 mb-2" %>
+     </tr>
+   </table>
+  </div>
+ </div>
+<% end %>
+</div>

@@ -18,7 +18,7 @@ class Member < ApplicationRecord
  validates :age, :numericality => {:only_integer => true, greater_than_or_equal_to: 15}
 
  enum gender: { male: 0, female: 1 }
- enum is_active: { 有効: true,  退会: false }
+ enum is_active: { stay: true,  withdrawal: false }
 
  def full_name
   self.last_name + self.first_name

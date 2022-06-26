@@ -1,7 +1,7 @@
 <div class="container">
  <div class="row">
   <div class="col-sm-12 mt-3">
-   <span class = "h5 text-dark"><%= @member.full_name %>さんの会員詳細</span>
+   <span class = "h5 text-dark">マイページ</span>
   </div>
  </div>
 
@@ -41,10 +41,6 @@
       <td>メールアドレス</td>
       <td><%= @member.email %></td>
      </tr>
-     <tr>
-      <td>会員ステータス</td>
-      <td><%= @member.is_active %></td>
-     </tr>
     </tbody>
    </table>
   </div>
@@ -52,7 +48,7 @@
 
  <div class="row">
   <div class="col-sm-2 mt-3"></div>
-  <div class="col-sm-2 mt-3"><%= link_to "編集する", edit_admin_member_path,  class: "btn btn-success btn-sm mb-2" %></div>
+  <div class="col-sm-2 mt-3"><%= link_to "編集する", edit_member_path,  class: "btn btn-success btn-sm mb-2" %></div>
   <div class="col-sm-2 mt-3"><%#= link_to "投稿一覧を見る", admin_order_path,  class: "btn btn-primary btn-sm mb-2" %></div>
  </div>
 
