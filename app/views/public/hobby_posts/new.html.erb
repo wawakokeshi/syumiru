@@ -9,10 +9,15 @@
   </div>
  </div>
 
-<%= form_with model: @post, url: posts_path, local:true do |f| %>
+<%= form_with model: @hobby_post, url: hobby_posts_path, local:true do |f| %>
+ <%= f.hidden_field :member_id, :value => current_member.id %>
  <div class="row">
   <div class="col-sm-3 mt-3">
    <table class = "table-sm table-borderless">
+     <tr>
+     <%= f.label :genre_id, "ジャンル" %>
+     <%= f.collection_select :genre_id, Genre.all, :id, :name, option = { include_blank: false }, class: "form-control" %>
+     </tr>
      <tr>
      <%= f.label :title, "タイトル" %>
      <%= f.text_field :title %>
@@ -20,6 +25,10 @@
      <tr>
      <%= f.label :introduction, "本文" %>
      <%= f.text_field :introduction %>
+     </tr>
+     <tr>
+     <%= f.label :image, "アイコン画像" %>
+     <%= f.file_field :image, accept: "image/*" %>
      </tr>
      <tr>
      <%= f.submit "投稿する", class: "btn btn-success btn-sm mt-2 mb-2" %>

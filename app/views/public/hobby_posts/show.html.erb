@@ -1,0 +1,43 @@
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12 mt-3">
+   <span class = "h5 text-dark">投稿詳細</span>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-sm-7 mt-3">
+   <table class="table table-borderless">
+    <tbody>
+     <tr>
+      <td>ジャンル</td>
+      <td><%= @hobby_post.genre.name %></td>
+     </tr>
+     <tr>
+      <td>タイトル</td>
+      <td><%= @hobby_post.title %></td>
+     </tr>
+     <tr>
+      <td>内容</td>
+      <td><%= @hobby_post.introduction %></td>
+     </tr>
+     <tr>
+      <td>画像</td>
+      <td>
+      <% if @hobby_post.image.attached? %>
+       <%= image_tag @hobby_post.image, size: "200x200" %>
+      <% else %>
+       <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
+      </td>
+     </tr>
+     <tr>
+      <td></td>
+      <td><%= link_to "編集する", edit_hobby_post_path, class: "btn btn-success btn-lg mb-2" %></td>
+      <td><%= link_to "削除する", hobby_post_path(@hobby_post.id), class: "btn btn-success btn-lg mb-2" %></td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</div>

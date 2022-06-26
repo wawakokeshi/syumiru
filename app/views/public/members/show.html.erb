@@ -10,8 +10,11 @@
    <table class="table table-borderless">
     <tbody>
      <tr>
-      <td>会員ID</td>
-      <td><%= @member.id %></td>
+      <% if @member.image.attached? %>
+       <%= image_tag @member.image, size: "200x200" %>
+      <% else %>
+       <%= image_tag 'no_image', size: "200x200" %>
+      <% end %>
      </tr>
      <tr>
       <td>氏名</td>

@@ -26,7 +26,7 @@ Rails.application.routes.draw do
   resources :members, only: [:show, :edit, :update]
   get '/members/:id/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
   patch '/members/:id/withdrawal' => 'members#withdrawal', as: 'withdrawal'
-  resources :posts
+  resources :hobby_posts
  end
 
 end

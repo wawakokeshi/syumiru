@@ -1,0 +1,21 @@
+<div class="container">
+ <div class="row">
+  <div class="col-sm-3 mt-3">
+   <table class = "table-sm table-borderless">
+    <thead>
+     <th class="table-active h4">投稿一覧</th>
+    </thead>
+   </table>
+  </div>
+ </div>
+
+<% @hobby_posts.each do |hobby_posts| %>
+ <%= hobby_posts.genre.name %>
+ <%= link_to hobby_posts.title, hobby_post_path(hobby_posts.id) %>
+ <%= hobby_posts.introduction %>
+ <% if hobby_posts.image.attached? %>
+    <%= image_tag hobby_posts.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'no_image', size: "200x200" %>
+  <% end %>
+<% end %>

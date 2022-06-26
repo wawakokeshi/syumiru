@@ -1,0 +1,38 @@
+<div class="container">
+ <div class="row">
+  <div class="col-sm-12 mt-3">
+   <span class = "h5 text-dark">投稿編集</span>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-sm-7 mt-3">
+    <%= form_with model: @hobby_post, url: hobby_post_path(@hobby_post), method: :patch, local:true do |f| %>
+   <table class="table table-borderless">
+    <tbody>
+     <tr>
+       <td><%= f.label :genre_id, "ジャンル" %></td>
+       <td><%= f.collection_select :genre_id, Genre.all, :id, :name, option = { include_blank: false }, class: "form-control" %></td>
+     </tr>
+     <tr>
+      <td><%= f.label :title, "タイトル" %></td>
+      <td><%= f.text_field :title %></td>
+     </tr>
+     <tr>
+      <td><%= f.label :introduction, "内容" %></td>
+      <td><%= f.text_field :introduction %></td>
+     </tr>
+     <tr>
+      <td><%= f.label :image, "画像" %></td>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td><%= f.submit "変更を保存", class: "btn btn-success btn-lg mb-2" %></td>
+     </tr>
+    </tbody>
+   </table>
+    <% end %>
+  </div>
+ </div>
+</div>
