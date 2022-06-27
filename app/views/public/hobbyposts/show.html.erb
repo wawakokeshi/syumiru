@@ -44,7 +44,7 @@
       <% else %>
        <%= form_with model: @comment, url: comments_path, method: :post, local: true do |f| %>
        <%= f.hidden_field :member_id, :value => current_member.id %>
-       <%= f.hidden_field :hobbypost_id, value: comment.hobbypost.id %>
+       <%= f.hidden_field :hobbypost_id, value: @hobbypost.id %>
        <%= f.label :content, "コメント" %>
        <%= f.text_area :content %>
        <%= f.submit "投稿", class: "btn btn-danger btn-lg mb-2" %>
