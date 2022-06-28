@@ -5,29 +5,40 @@ class Public::HobbypostsController < ApplicationController
  end
 
  def index
-  @hobbyposts = Hobbypost.page(params[:page])
+  #@hobbyposts = Hobbypost.page(params[:page])
+  @hobbyposts = Hobbypost.where(status: :true).order(params[:sort]).page(params[:page]).per(10)
  end
 
  def create
   @hobbypost = Hobbypost.new(hobbypost_params)
-  if @hobbypost.save!
-   redirect_to hobbyposts_path
-   flash[:notice] = "投稿が完了しました。"
+  if params[:post]
+   if @hobbypost.save!(status: true)
+    redirect_to hobbyposts_path
+    flash[:notice] = "投稿しました。"
+   else
+    render :new
+    flash[:alert] = "投稿できませんでした。入力内容をご確認ください。"
+   end
   else
-   render :new
+   if @hobbypost.save(status: false)
+    redirect_to member_path(current_member)
+    flash[:notice] = "下書き保存しました。"
+   else
+    render :new
+    flash[:alert] = "保存できませんでした。入力内容をご確認ください。"
+   end
   end
  end
 
  def show
   @hobbypost = Hobbypost.find(params[:id])
   @comment = Comment.new
-  @comments = Comment
  end
- 
+
  def edit
   @hobbypost = Hobbypost.find(params[:id])
  end
- 
+
  def update
   @hobbypost = Hobbypost.find(params[:id])
   if @hobbypost.update(hobbypost_params)
@@ -47,7 +58,7 @@ class Public::HobbypostsController < ApplicationController
 
  private
  def hobbypost_params
-  params.require(:hobbypost).permit(:genre_id, :member_id, :title, :introduction)
+  params.require(:hobbypost).permit(:genre_id, :member_id, :title, :introduction, :status)
  end
 
 end
