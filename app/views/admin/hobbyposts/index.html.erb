@@ -1,0 +1,47 @@
+<div class="container">
+ <div class="row">
+  <div class="col-sm-2 mt-3">
+   <table class ="table-sm table-borderless">
+    <thead>
+     <th class="table-active h5">投稿一覧</th>
+    </thead>
+   </table>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-sm-12 mt-3"></div>
+    <table class = "table table-borderless">
+     <thead class = "thead-light">
+      <tr>
+       <th>投稿ID</th>
+       <th>ジャンル</th>
+       <th>タイトル</th>
+       <th>投稿内容</th>
+       <th>ステータス</th>
+      </tr>
+     </thead>
+
+     <tbody>
+      <% @hobbyposts.each do |hobbypost| %>
+      <tr>
+       <td><%= hobbypost.id %></td>
+       <td><%= hobbypost.genre.name %></td>
+       <td><%= link_to hobbypost.title, admin_hobbypost_path(hobbypost.id) %></td>
+       <td><%= hobbypost.introduction %></td>
+       <td><%= hobbypost.is_active %></td>
+      </tr>
+      <% end %>
+     </tbody>
+    </table>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-sm-12 mt-3">
+   <div class="d-flex justify-content-center">
+    <%= paginate @hobbyposts %>
+   </div>
+  </div>
+ </div>
+</div>

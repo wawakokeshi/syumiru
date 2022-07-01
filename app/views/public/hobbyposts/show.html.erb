@@ -35,6 +35,17 @@
    </table>
    </div>
  </div>
+ 
+  <% if @hobbypost.favorited?(current_member) %>
+   <%= link_to favorite_path(@hobbypost.id), class:"link", method: :delete do %>
+    <span style="color:red;">❤︎</span>
+   <% end %>
+  <% else %>
+   <%= link_to favorites_path(@hobbypost.id), method: :post do %>
+    <span>❤︎</span>
+   <% end %>
+  <% end %>
+ 
 
  <div class="row">
   <div class="col-sm-7 mt-3">

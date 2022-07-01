@@ -1,0 +1,48 @@
+<div class="container">
+ <div class="row">
+  
+   <div class="col-sm-2 mt-3">
+   <table class = "table-sm table-borderless">
+    <thead>
+     <th class="table-active h5">投稿詳細</th>
+    </thead>
+   </table>
+  </div>
+ </div>
+ 
+ <div class="row">
+  <div class="col-sm-5 mt-3">
+    <% if @hobbypost.image.attached? %>
+     <%= image_tag @hobbypost.image, size: "400x300" %>
+    <% else %>
+     <%= image_tag 'no_image', size: "400x300" %>
+    <% end %>
+  </div>
+  <div class="col-sm-7 mt-3">
+   <table class="table table-borderless">
+    <tbody>
+     <tr>
+      <td>タイトル</td>
+      <td><%= @hobbypost.title %></td>
+     </tr>
+     <tr>
+      <td>ジャンル</td></td>
+      <td><%= @hobbypost.genre %></td>
+     </tr>
+     <tr>
+      <td>投稿内容</td>
+      <td><%= @hobbypost.introduction %></td>
+     </tr>
+     <tr>
+      <td>ステータス</td>
+      <td><%= @hobbypost.is_active %></td>
+     </tr>
+     <tr>
+      <td></td>
+      <td><%= link_to "編集する", edit_admin_hobbypost_path, class: "btn btn-success btn-lg mt-2 mb-2" %></td>
+     </tr>
+    </tbody>
+   </table>
+  </div> 
+ </div>
+</div>

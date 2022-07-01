@@ -16,13 +16,14 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :genres, only: [:index, :create, :edit, :update]
   resources :members, only: [:index, :show, :edit, :update]
+  resources :hobbyposts, only: [:index, :show, :edit, :update]
  end
 
  scope module: :public do
   root to: 'homes#top'
   get '/about' => 'homes#about', as: 'about'
   resources :comments, only: [:show, :create]
-  #resources :favorites, only: [:index, :create, :destroy, :update]
+  resources :favorites, only: [:create, :destroy]
   resources :members, only: [:show, :edit, :update]
   get '/members/:id/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
   patch '/members/:id/withdrawal' => 'members#withdrawal', as: 'withdrawal'
