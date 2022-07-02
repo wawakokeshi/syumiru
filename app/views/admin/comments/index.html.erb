@@ -1,0 +1,45 @@
+<div class="container">
+ <div class="row">
+  <div class="col-sm-2 mt-3">
+   <table class ="table-sm table-borderless">
+    <thead>
+     <th class="table-active h5">コメント一覧</th>
+    </thead>
+   </table>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-sm-12 mt-3"></div>
+    <table class = "table table-borderless">
+     <thead class = "thead-light">
+      <tr>
+       <th>コメントID</th>
+       <th>ニックネーム</th>
+       <th>投稿内容</th>
+       <th>ステータス</th>
+      </tr>
+     </thead>
+
+     <tbody>
+      <% @comments.each do |comment| %>
+      <tr>
+       <td><%= comment.id %></td>
+       <td><%= comment.member.nickname %></td>
+       <td><%= link_to comment.content, admin_comment_path(comment.id) %></td>
+       <td><%= comment.is_active %></td>
+      </tr>
+      <% end %>
+     </tbody>
+    </table>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-sm-12 mt-3">
+   <div class="d-flex justify-content-center">
+    <%= paginate @comments %>
+   </div>
+  </div>
+ </div>
+</div>

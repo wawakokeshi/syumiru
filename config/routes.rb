@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   resources :genres, only: [:index, :create, :edit, :update]
   resources :members, only: [:index, :show, :edit, :update]
-  resources :hobbyposts, only: [:index, :show, :edit, :update]
+  resources :hobbyposts, only: [:index, :show, :update]
+  resources :comments, only: [:index, :show, :update]
  end
 
  scope module: :public do

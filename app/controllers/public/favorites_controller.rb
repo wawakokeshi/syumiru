@@ -6,8 +6,8 @@ class Public::FavoritesController < ApplicationController
  end
 
  def destroy
-  @favorite = Favorite.find_by(member_id: current_member.id, hobbypost_id: params[:hobbypost_id])
-  @favorite.destroy
+  favorite = Favorite.find_by(member_id: current_member.id, hobbypost_id: params[:hobbypost_id])
+  favorite.delete
   redirect_to hobbyposts_path
  end
 end

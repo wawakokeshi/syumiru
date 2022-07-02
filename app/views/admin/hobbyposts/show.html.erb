@@ -1,6 +1,6 @@
 <div class="container">
  <div class="row">
-  
+
    <div class="col-sm-2 mt-3">
    <table class = "table-sm table-borderless">
     <thead>
@@ -9,7 +9,7 @@
    </table>
   </div>
  </div>
- 
+
  <div class="row">
   <div class="col-sm-5 mt-3">
     <% if @hobbypost.image.attached? %>
@@ -19,6 +19,8 @@
     <% end %>
   </div>
   <div class="col-sm-7 mt-3">
+
+   <%= form_with model: @hobbypost, url: admin_hobbypost_path(@hobbypost), method: :patch, local:true do |f| %>
    <table class="table table-borderless">
     <tbody>
      <tr>
@@ -27,22 +29,42 @@
      </tr>
      <tr>
       <td>ジャンル</td></td>
-      <td><%= @hobbypost.genre %></td>
+      <td><%= @hobbypost.genre.name %></td>
      </tr>
      <tr>
       <td>投稿内容</td>
       <td><%= @hobbypost.introduction %></td>
      </tr>
      <tr>
-      <td>ステータス</td>
-      <td><%= @hobbypost.is_active %></td>
+      <td><%= f.label :is_active, "ステータス" %></td>
+      <td>
+       <%= f.radio_button :is_active, :on %>
+       <%= f.label :is_active_on, "公開" %>
+       <%= f.radio_button :is_active, :off %>
+       <%= f.label :is_active_off, "非公開" %>
+   　　</td>
      </tr>
      <tr>
       <td></td>
-      <td><%= link_to "編集する", edit_admin_hobbypost_path, class: "btn btn-success btn-lg mt-2 mb-2" %></td>
+      <td><%= f.submit "更新する", class: "btn btn-success btn-lg mt-2 mb-2" %></td>
      </tr>
     </tbody>
    </table>
-  </div> 
+   <% end %>
+  </div>
+ </div>
+
+ <div class="row">
+  <div class="col-sm-7 mt-3">
+ <% if @hobbypost.comments.present? %>
+  <% @hobbypost.comments.each do |comment| %>
+   <%= comment.member.nickname %>さん
+   <%= comment.content %>
+   <%= comment.created_at %>
+  <% end %>
+ <% else %>
+  コメントはありません。
+ <% end %>
+  </div>
  </div>
 </div>

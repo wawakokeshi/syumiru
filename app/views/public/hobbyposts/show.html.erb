@@ -35,7 +35,7 @@
    </table>
    </div>
  </div>
- 
+
   <% if @hobbypost.favorited?(current_member) %>
    <%= link_to favorite_path(@hobbypost.id), class:"link", method: :delete do %>
     <span style="color:red;">❤︎</span>
@@ -45,16 +45,22 @@
     <span>❤︎</span>
    <% end %>
   <% end %>
- 
+
 
  <div class="row">
   <div class="col-sm-7 mt-3">
+   コメント
  <% if @hobbypost.comments.present? %>
+ <%# and @hobbypost.comments.is_active==true %>
+ <table>
   <% @hobbypost.comments.each do |comment| %>
-   <%= comment.member.nickname %>さん
-   <%= comment.content %>
-   <%= comment.created_at %>
+  <tr>
+   <td><%= comment.member.nickname %>さん</td>
+   <td><%= comment.content %></td>
+   <td><%= comment.created_at.to_s(:datetime_jp) %></td>
+  <tr>
   <% end %>
+ </table>
  <% else %>
   コメントはありません。
  <% end %>

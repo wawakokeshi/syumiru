@@ -1,11 +1,13 @@
 class Public::HobbypostsController < ApplicationController
 
+ before_action :authenticate_member!
+ 
  def new
   @hobbypost = Hobbypost.new
  end
 
  def index
-  @hobbyposts = Hobbypost.where(status: :true).order(params[:sort]).page(params[:page]).per(10)
+  @hobbyposts = Hobbypost.where(is_active: :on, status: :true).order(params[:sort]).page(params[:page]).per(10)
  end
 
  def create

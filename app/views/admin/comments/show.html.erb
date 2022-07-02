@@ -1,0 +1,42 @@
+<div class="container">
+ <div class="row">
+
+   <div class="col-sm-2 mt-3">
+   <table class = "table-sm table-borderless">
+    <thead>
+     <th class="table-active h5">コメント詳細</th>
+    </thead>
+   </table>
+  </div>
+ </div>
+
+   <%= form_with model: @comment, url: admin_comment_path(@comment), method: :patch, local:true do |f| %>
+   <table class="table table-borderless">
+    <tbody>
+     <tr>
+      <td>ニックネーム</td>
+      <td><%= @comment.member.nickname %></td>
+     </tr>
+     <tr>
+      <td>コメント内容</td>
+      <td><%= @comment.content %></td>
+     </tr>
+     <tr>
+      <td><%= f.label :is_active, "ステータス" %></td>
+      <td>
+       <%= f.radio_button :is_active, :on %>
+       <%= f.label :is_active_on, "公開" %>
+       <%= f.radio_button :is_active, :off %>
+       <%= f.label :is_active_off, "非公開" %>
+   　　</td>
+     </tr>
+     <tr>
+      <td></td>
+      <td><%= f.submit "更新する", class: "btn btn-success btn-lg mt-2 mb-2" %></td>
+     </tr>
+    </tbody>
+   </table>
+   <% end %>
+  </div>
+ </div>
+</div>
