@@ -14,7 +14,7 @@ class Hobbypost < ApplicationRecord
   validates :title, length: { maximum: 14 }, on: :publicize
 
   def favorited?(member)
-   favorites.where(member_id: member_id).exists?
+   favorites.where(member_id: member.id).exists?
   end
  
   enum is_active: { on: true,  off: false }

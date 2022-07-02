@@ -1,3 +1,4 @@
+<script src="https://kit.fontawesome.com/a59fc93d49.js" crossorigin="anonymous"></script>
 <div class="container">
  <div class="row">
   <div class="col-sm-12 mt-3">
@@ -33,37 +34,40 @@
      </tr>
     </tbody>
    </table>
-   </div>
+  </div>
  </div>
 
+
   <% if @hobbypost.favorited?(current_member) %>
-   <%= link_to favorite_path(@hobbypost.id), class:"link", method: :delete do %>
-    <span style="color:red;">❤︎</span>
+   <%= link_to hobbypost_favorite_path(@hobbypost.id), class:"link", method: :delete do %>
+    <i class="fas fa-heart" style="color :red"></i>
    <% end %>
+   いいね！
   <% else %>
-   <%= link_to favorites_path(@hobbypost.id), method: :post do %>
-    <span>❤︎</span>
+   <%= link_to hobbypost_favorites_path(@hobbypost.id), method: :post do %>
+    <i class="far fa-heart" style="color :red"></i>
    <% end %>
+   いいね！
   <% end %>
 
 
  <div class="row">
   <div class="col-sm-7 mt-3">
    コメント
- <% if @hobbypost.comments.present? %>
- <%# and @hobbypost.comments.is_active==true %>
- <table>
-  <% @hobbypost.comments.each do |comment| %>
-  <tr>
-   <td><%= comment.member.nickname %>さん</td>
-   <td><%= comment.content %></td>
-   <td><%= comment.created_at.to_s(:datetime_jp) %></td>
-  <tr>
+  <% if @hobbypost.comments.present? %>
+  <%# and @hobbypost.comments.is_active==true %>
+  <table>
+   <% @hobbypost.comments.each do |comment| %>
+   <tr>
+    <td><%= comment.member.nickname %>さん</td>
+    <td><%= comment.content %></td>
+    <td><%= comment.created_at.to_s(:datetime_jp) %></td>
+   <tr>
+   <% end %>
+  </table>
+  <% else %>
+   コメントはありません。
   <% end %>
- </table>
- <% else %>
-  コメントはありません。
- <% end %>
   </div>
  </div>
 
@@ -74,14 +78,26 @@
        <%= link_to "削除する", hobbypost_path(@hobbypost), method: :delete, class: "btn btn-danger btn-lg mb-2" %></td>
       <% else %>
        <%= form_with model: @comment, url: comments_path, method: :post, local: true do |f| %>
-       <%= f.hidden_field :member_id, :value => current_member.id %>
-       <%= f.hidden_field :hobbypost_id, value: @hobbypost.id %>
-       <%= f.label :content, "コメント" %>
-       <%= f.text_area :content %>
-       <%= f.submit "投稿", class: "btn btn-danger btn-lg mb-2" %>
+        <%= f.hidden_field :member_id, :value => current_member.id %>
+        <%= f.hidden_field :hobbypost_id, value: @hobbypost.id %>
+        <%= f.label :content, "コメント" %>
+        <%= f.text_area :content %>
+        <%= f.submit "投稿", class: "btn btn-danger btn-lg mb-2" %>
        <% end %>
       <% end %>
   </div>
  </div>
+
+  <div class="jumbotron m-3">
+    <h1 class="display-4">Hello, Bootstrap!</h1>
+    <hr class="my-4">
+    <p>This is the template of Ruby on Rails using Bootstrap.</p>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal">
+      <i class="far fa-window-maximize"></i>
+      Click here
+    </button>
+  </div>
+
+
 
 </div>

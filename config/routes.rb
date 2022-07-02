@@ -24,11 +24,12 @@ Rails.application.routes.draw do
   root to: 'homes#top'
   get '/about' => 'homes#about', as: 'about'
   resources :comments, only: [:show, :create]
-  resources :favorites, only: [:create, :destroy]
   resources :members, only: [:show, :edit, :update]
   get '/members/:id/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
   patch '/members/:id/withdrawal' => 'members#withdrawal', as: 'withdrawal'
-  resources :hobbyposts
+  resources :hobbyposts do
+   resources :favorites, only: [:create, :destroy]
+  end
  end
 
 end
