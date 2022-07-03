@@ -7,7 +7,9 @@ class Public::HobbypostsController < ApplicationController
  end
 
  def index
-  @hobbyposts = Hobbypost.where(is_active: :on, status: :true).order(params[:sort]).page(params[:page]).per(10)
+  @q = Hobbypost.ransack(params[:q])
+  @hobbyposts = @q.result.includes(:member, :genre).order(created_at: :desc)
+  #@hobbyposts2 = Hobbypost.where(is_active: :on, status: :true).order(params[:sort]).page(params[:page]).per(10)
  end
 
  def create
