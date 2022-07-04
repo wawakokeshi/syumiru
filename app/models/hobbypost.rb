@@ -16,7 +16,7 @@ class Hobbypost < ApplicationRecord
   def favorited?(member)
    favorites.where(member_id: member.id).exists?
   end
- 
+
   enum is_active: { on: true,  off: false }
 
 end

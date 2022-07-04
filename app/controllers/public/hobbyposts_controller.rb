@@ -36,6 +36,7 @@ class Public::HobbypostsController < ApplicationController
  def show
   @hobbypost = Hobbypost.find(params[:id])
   @comment = Comment.new
+  @favorite_count = Favorite.where(member_id: params[:member_id]).count
  end
 
  def edit
