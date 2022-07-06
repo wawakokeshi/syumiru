@@ -42,7 +42,7 @@
    <%= link_to hobbypost_favorite_path(@hobbypost.id), class:"link", method: :delete do %>
     <i class="fas fa-heart" style="color :red"></i>
    <% end %>
-   いいね！
+   いいね！を取り消す
   <% else %>
    <%= link_to hobbypost_favorites_path(@hobbypost.id), method: :post do %>
     <i class="far fa-heart" style="color :red"></i>

@@ -1,4 +1,5 @@
 <div class="container">
+
  <div class="row">
   <div class="col-sm-3 mt-3">
    <table class = "table-sm table-borderless">
@@ -7,25 +8,47 @@
     </thead>
    </table>
   </div>
- </div>
-
- <div class="row">
   <div class="col-sm-3 mt-3">
+   ジャンル検索<br>
    <%= search_form_for @q do |f| %>
-    <%= f.search_field :title_or_introduction_cont, class: 'form-control', placeholder: '検索ワード' %><%= f.submit '検索', class: 'btn btn-primary' %>
+   フリーワード検索<br>
+    <%= f.search_field :title_or_introduction_cont, class: 'form-control mt-3', placeholder: '検索ワード' %><%= f.submit '検索', class: 'btn btn-primary mt-3' %>
    <% end %>
   </div>
  </div>
 
-<% @hobbyposts.each do |hobbyposts| %>
- <%= hobbyposts.genre.name %>
- <%= link_to hobbyposts.title, hobbypost_path(hobbyposts.id) %>
- <%= hobbyposts.introduction %>
- <% if hobbyposts.image.attached? %>
-    <%= image_tag hobbyposts.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'no_image', size: "200x200" %>
-  <% end %>
-<% end %>
 
-</div>
+ <div class="row">
+  <div class="col-sm-12 mt-3"></div>
+    <table class = "table table-border">
+     <thead class = "thead-light">
+      <tr>
+       <th>投稿者</th>
+       <th>ジャンル</th>
+       <th>タイトル</th>
+       <th>投稿内容</th>
+       <th>画像</th>
+      </tr>
+     </thead>
+     <tbody>
+      <% @hobbyposts.each do |hobbypost| %>
+      <tr>
+       <td><%= hobbypost.member.nickname %>さん</td>
+       <td><%= hobbypost.genre.name %></td>
+       <td><%= link_to hobbypost.title, hobbypost_path(hobbypost.id) %></td>
+       <td><%= hobbypost.introduction %></td>
+       <td>
+        <% if hobbypost.image.attached? %>
+         <%= image_tag hobbypost.image, size: "200x200" %>
+        <% else %>
+         <%= image_tag 'no_image', size: "200x200" %>
+        <% end %>
+       </td>
+      </tr>
+      <% end %>
+     </tbody>
+    </table>
+  </div>
+ </div>
+
+ </div>

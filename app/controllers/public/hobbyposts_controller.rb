@@ -1,7 +1,7 @@
 class Public::HobbypostsController < ApplicationController
 
  before_action :authenticate_member!
- 
+
  def new
   @hobbypost = Hobbypost.new
  end
@@ -36,7 +36,7 @@ class Public::HobbypostsController < ApplicationController
  def show
   @hobbypost = Hobbypost.find(params[:id])
   @comment = Comment.new
-  @favorite_count = Favorite.where(member_id: params[:member_id]).count
+  @favorite_count = Favorite.where(hobbypost_id: @hobbypost).count
  end
 
  def edit
