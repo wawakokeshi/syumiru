@@ -70,6 +70,9 @@
       </nav>
     </header>
     <main class="mb-auto">
+    <% flash.each do |key, value| %>
+     <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
     <%= yield %>
     </main>
     <footer class="bg-dark text-white pt-5 pb-4">

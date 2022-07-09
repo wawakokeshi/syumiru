@@ -37,7 +37,6 @@
   </div>
  </div>
 
-
   <% if @hobbypost.favorited?(current_member) %>
    <%= link_to hobbypost_favorite_path(@hobbypost.id), class:"link", method: :delete do %>
     <i class="fas fa-heart" style="color :red"></i>

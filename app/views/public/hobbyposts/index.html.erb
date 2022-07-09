@@ -9,7 +9,19 @@
    </table>
   </div>
   <div class="col-sm-3 mt-3">
-   ジャンル検索<br>
+   <table class ="table table-bordered">
+    <thead>
+     <th>ジャンル検索</th>
+    </thead>
+    <tbody>
+     <% @genres.each do |genre| %>
+     <tr>
+      <td><%= link_to genre.name, hobbyposts_path(genre_id: genre.id) %></td>
+     </tr>
+     <% end %>
+    </tbody>
+   </table>
+   
    <%= search_form_for @q do |f| %>
    フリーワード検索<br>
     <%= f.search_field :title_or_introduction_cont, class: 'form-control mt-3', placeholder: '検索ワード' %><%= f.submit '検索', class: 'btn btn-primary mt-3' %>

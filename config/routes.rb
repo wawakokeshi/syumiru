@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/members/:id/unsubscribe' => 'members#unsubscribe', as: 'unsubscribe'
   patch '/members/:id/withdrawal' => 'members#withdrawal', as: 'withdrawal'
   resources :hobbyposts do
-   resources :favorites, only: [:create, :destroy]
+  resource :favorites, only: [:create, :destroy]
   end
  end
 
