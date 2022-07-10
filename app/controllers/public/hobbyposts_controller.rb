@@ -44,6 +44,7 @@ class Public::HobbypostsController < ApplicationController
 
  def show
   @hobbypost = Hobbypost.find(params[:id])
+  @is_active = @hobbypost.comments.where(is_active: :on)
   @comment = Comment.new
   @favorite_count = Favorite.where(hobbypost_id: @hobbypost).count
  end

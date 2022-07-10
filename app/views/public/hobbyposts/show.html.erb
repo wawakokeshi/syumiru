@@ -11,6 +11,10 @@
    <table class="table table-borderless">
     <tbody>
      <tr>
+      <td>投稿者</td>
+      <td><%= @hobbypost.member.nickname %>さん</td>
+     </tr>
+     <tr>
       <td>ジャンル</td>
       <td><%= @hobbypost.genre.name %></td>
      </tr>
@@ -37,6 +41,9 @@
   </div>
  </div>
 
+ <% if @hobbypost.member == current_member %>
+  いいね！<i class="fas fa-heart" style="color :red"></i>
+ <% else %>
   <% if @hobbypost.favorited?(current_member) %>
    <%= link_to hobbypost_favorites_path(@hobbypost.id), class:"link", method: :delete do %>
     <i class="fas fa-heart" style="color :red"></i>
@@ -48,16 +55,16 @@
    <% end %>
    いいね！
   <% end %>
+ <% end %>
   <%= @favorite_count %>
 
 
  <div class="row">
   <div class="col-sm-7 mt-3">
    コメント
-     <% byebug %> 
-  <% if @hobbypost.comments.present? && @hobbypost.comments.is_active == "on" %>
+  <% if @hobbypost.comments.present? %>
   <table>
-   <% @hobbypost.comments.each do |comment| %>
+   <% @is_active.each do |comment| %>
    <tr>
     <td><%= comment.member.nickname %>さん</td>
     <td><%= comment.content %></td>
