@@ -18,5 +18,6 @@ class Hobbypost < ApplicationRecord
   end
 
   enum is_active: { on: true,  off: false }
+  #enum status: { 公開中: true,  下書き保存: false }
 
 end

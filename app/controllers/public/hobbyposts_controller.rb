@@ -8,18 +8,17 @@ class Public::HobbypostsController < ApplicationController
 
  def index
   @q = Hobbypost.ransack(params[:q])
-  @hobbyposts_free = @q.result.includes(:member, :genre).order(created_at: :desc)
+  @hobbyposts = @q.result.includes(:member, :genre).order(created_at: :desc)
   @genres = Genre.all
    if params[:genre_id].present?
    genre = Genre.find(params[:genre_id])
-   @hobbyposts_genre = genre.hobbyposts.where(is_active: true).page(params[:page])
+   @hobbyposts = genre.hobbyposts.where(is_active: :on, status: :true).order(params[:sort]).page(params[:page]).per(10)
     unless @hobbyposts.present?
      redirect_to hobbyposts_path
     end
    else
-    @hobbyposts = Hobbypost.where(is_active: true).page(params[:page])
+    @hobbyposts = Hobbypost.where(is_active: :on, status: :true).order(params[:sort]).page(params[:page]).per(10)
    end
-  #@hobbyposts2 = Hobbypost.where(is_active: :on, status: :true).order(params[:sort]).page(params[:page]).per(10)
  end
 
  def create

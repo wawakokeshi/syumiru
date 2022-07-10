@@ -4,7 +4,7 @@ class Public::MembersController < ApplicationController
   
   def show
    @member = current_member
-   @hobbyposts = Hobbypost.where(status: :true).order("created_at DESC").page(params[:page]).per(8)
+   @hobbyposts = Hobbypost.where(member_id: current_member.id).order("created_at DESC").page(params[:page]).per(8)
   end
 
   def edit

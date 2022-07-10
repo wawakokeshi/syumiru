@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 2022_07_02_082800) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["hobbypost_id"], name: "index_favorites_on_hobbypost_id"
-    t.index ["member_id", "hobbypost_id"], name: "index_favorites_on_member_id_and_hobbypost_id", unique: true
     t.index ["member_id"], name: "index_favorites_on_member_id"
   end
 

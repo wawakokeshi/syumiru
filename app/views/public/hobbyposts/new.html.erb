@@ -12,30 +12,35 @@
 <%= form_with model: @hobbypost, url: hobbyposts_path, local:true do |f| %>
  <%= f.hidden_field :member_id, :value => current_member.id %>
  <div class="row">
-  <div class="col-sm-3 mt-3">
+  <div class="mt-3 mx-auto col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
    <table class = "table-sm table-borderless">
      <tr>
-     <%= f.label :genre_id, "ジャンル" %>
-     <%= f.collection_select :genre_id, Genre.all, :id, :name, option = { include_blank: false }, class: "form-control" %>
+      <td><%= f.label :genre_id, "ジャンル" %></td>
+      <td><%= f.collection_select :genre_id, Genre.all, :id, :name, option = { include_blank: false }, class: "form-control" %></td>
      </tr>
      <tr>
-     <%= f.label :title, "タイトル" %>
-     <%= f.text_field :title %>
+      <td><%= f.label :title, "タイトル" %></td>
+      <td><%= f.text_field :title, class: "form-control" %></td>
      </tr>
      <tr>
-     <%= f.label :introduction, "本文" %>
-     <%= f.text_field :introduction %>
+      <td><%= f.label :introduction, "本文" %></td>
+      <td><%= f.text_area :introduction, class: "form-control" %></td>
      </tr>
      <tr>
-     <%= f.label :image, "アイコン画像" %>
-     <%= f.file_field :image, accept: "image/*" %>
+      <td><%= f.label :image, "画像" %></td>
+      <td><%= f.file_field :image, accept: "image/*" %></td>
      </tr>
      <tr>
-     <%= f.radio_button :status, :true %>
-     <%= f.label :status, "公開", {value: :true, style: "display: inline-block;"} %>
-     <%= f.radio_button :status, :false %>
-     <%= f.label :status, "下書き保存", {value: :false, style: "display: inline-block;"} %></div>
-     <%= f.submit "投稿する", class: "btn btn-success btn-sm mt-2 mb-2" %>
+      <td>状態</td>
+      <td>
+       <%= f.radio_button :status, :true %>
+       <%= f.label :status, "公開", {value: :true, style: "display: inline-block;"} %>
+       <%= f.radio_button :status, :false %>
+       <%= f.label :status, "下書き保存", {value: :false, style: "display: inline-block;"} %>
+      </td>
+     </tr>
+     <tr>
+      <td><%= f.submit "投稿する", class: "btn btn-success btn-sm mt-2 mb-2" %></td>
      </tr>
    </table>
   </div>
