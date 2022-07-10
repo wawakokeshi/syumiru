@@ -38,7 +38,7 @@
  </div>
 
   <% if @hobbypost.favorited?(current_member) %>
-   <%= link_to hobbypost_favorite_path(@hobbypost.id), class:"link", method: :delete do %>
+   <%= link_to hobbypost_favorites_path(@hobbypost.id), class:"link", method: :delete do %>
     <i class="fas fa-heart" style="color :red"></i>
    <% end %>
    いいね！を取り消す
@@ -54,6 +54,7 @@
  <div class="row">
   <div class="col-sm-7 mt-3">
    コメント
+     <% byebug %> 
   <% if @hobbypost.comments.present? && @hobbypost.comments.is_active == "on" %>
   <table>
    <% @hobbypost.comments.each do |comment| %>
